@@ -95,7 +95,7 @@ function App() {
             </div>
           </div>
           <button
-            className="px-6 py-3 bg-[#11686b] text-white rounded-md font-semibold shadow hover:bg-[#278083] transition-colors"
+            className="px-6 py-3 z-20 bg-[#11686b] text-white rounded-md font-semibold shadow hover:bg-[#278083] transition-colors"
             onClick={() => setShowLanding(false)}
           >
             Get Started
