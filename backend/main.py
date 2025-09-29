@@ -8,10 +8,7 @@ app = FastAPI()
 
 # --- Middleware ---
 # This allows your React app (running on a different port) to talk to this API
-origins = [
-    "http://localhost:3000", # Default React dev server
-    "http://localhost:5173", # Default Vite dev server
-]
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
