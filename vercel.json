@@ -5,8 +5,7 @@
       "src": "Rail-main/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist",
-        "buildCommand": "npm run build"
+        "distDir": "Rail-main/dist"
       }
     },
     {
@@ -18,7 +17,7 @@
     { "src": "/api/(.*)", "dest": "backend/main.py" },
     { "src": "/(.*)", "dest": "Rail-main/dist/index.html" }
   ],
-  "outputDirectory": "Rail-main/dist",
+  
   "env": {
     "VITE_API_BASE_URL": "/api"
   }
