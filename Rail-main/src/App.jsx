@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
-import { Users,Map, ShieldCheck, TimerReset, BrainCog, LayoutDashboard, BellDot } from 'lucide-react';
+import { Users, Map, ShieldCheck, TimerReset, BrainCog, LayoutDashboard, BellDot } from 'lucide-react';
 
 import Dashboard from './components/Dashboard';
 import TrackDiagram from './components/TrackDiagram';
@@ -83,78 +83,81 @@ function App() {
             returnDuration={1.5}
           />
         </div>
-        {/* Glass Card */}
-        <nav className='absolute flex items-center justify-between w-[100%] top-0 left-0 navb px-[150px]'>
-          <div className='flex gap-1 items-center justify-center'>
-            <img src={orionLogo} alt="ORION Logo" className="h-24 w-24 object-contain py-3" />
+
+
+        {/* Responsive Navbar */}
+        <nav className='absolute flex items-center justify-between w-full top-0 left-0 navb px-4 md:px-8 lg:px-16 py-2'>
+          <div className='flex gap-2 items-center justify-center'>
+            <img src={orionLogo} alt="ORION Logo" className="h-16 w-16 md:h-24 md:w-24 object-contain rounded-full" />
             <div>
-              <h1 className="text-3xl font-bold text-black mb-2 font-sans leading-4">ORION</h1>
-              <h2 className="text-xl text-gray-800  text-center block leading-3">
+              <h1 className="text-xl md:text-3xl font-bold text-black font-sans leading-tight">ORION</h1>
+              {/* H2 is hidden on mobile and appears on medium screens and up */}
+              <h2 className="hidden md:block text-xs md:text-base lg:text-xl text-gray-800 leading-tight">
                 Operational Rail Intelligence & Optimization Network
               </h2>
             </div>
           </div>
           <button
-            className="px-6 py-3 z-20 bg-[#11686b] text-white rounded-md font-semibold shadow hover:bg-[#278083] transition-colors"
+            className="px-4 py-2 md:px-6 md:py-3 z-20 bg-[#11686b] text-white rounded-md font-semibold shadow hover:bg-[#278083] transition-colors text-sm md:text-base whitespace-nowrap"
             onClick={() => setShowLanding(false)}
           >
             Get Started
           </button>
-          {/* <img src={orionLogo} alt="ORION Logo" className="h-32 w-32 mb-4 object-contain pb-5" /> */}
-
         </nav>
-        <div className="glass-card flex flex-col items-center max-w-fit w-full z-10 relative p-12">
 
-          <p className="text-gray-900 text-8xl mb-6 font-bold text-center h-[650px] pt-[225px] pb-[50px]">
-            AI-Driven Railway Traffic <span className='snp'>Optimization</span> for Maximizing Section Throughput
-          </p>
+        {/* Main content area with responsive padding */}
+        <div className="flex-grow flex flex-col items-center justify-center w-full px-4 md:px-8 pt-32 pb-12 md:pt-40 md:pb-20">
+          {/* Hero Section */}
+          <div className="glass-card flex flex-col items-center w-full z-10 relative p-6 md:p-12 mb-12 md:mb-16">
+            <p className="text-gray-900 text-4xl sm:text-5xl lg:text-7xl font-bold text-center">
+              AI-Driven Railway Traffic <span className='snp'>Optimization</span> for Maximizing Section Throughput
+            </p>
+          </div>
 
-        </div>
-
-        <div className='z-10 pb-[100px]'>
-          {/* Feature Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8 w-full max-w-5xl z-10">
-            {/* Card 1 */}
-            <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-8 flex flex-col items-center min-h-[180px]">
-              <Map className="w-16 h-16 mb-4" style={{ color: '#11686b' }} />
-              <span className="text-2xl font-bold text-gray-900 text-center mb-2">Live Tracking</span>
-              <span className="text-base text-gray-700 text-center">Monitor train positions in real time across the network.</span>
-            </div>
-            {/* Card 2 */}
-            <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-8 flex flex-col items-center min-h-[180px]">
-              <ShieldCheck className="w-16 h-16 mb-4" style={{ color: '#11686b' }} />
-              <span className="text-2xl font-bold text-gray-900 text-center mb-2">Reliable Service</span>
-              <span className="text-base text-gray-700 text-center">Ensuring consistent and dependable railway operations.</span>
-            </div>
-            {/* Card 3 */}
-            <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-8 flex flex-col items-center min-h-[180px]">
-              <TimerReset className="w-16 h-16 mb-4" style={{ color: '#11686b' }} />
-              <span className="text-2xl font-bold text-gray-900 text-center mb-2">Minimum Delay</span>
-              <span className="text-base text-gray-700 text-center">Reduce delays with intelligent scheduling and control.</span>
-            </div>
-            {/* Card 4 */}
-            <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-8 flex flex-col items-center min-h-[180px]">
-              <BrainCog className="w-16 h-16 mb-4" style={{ color: '#11686b' }} />
-              <span className="text-2xl font-bold text-gray-900 text-center mb-2">AI Based Scheduling</span>
-              <span className="text-base text-gray-700 text-center">Leverage AI to optimize train schedules and routes.</span>
-            </div>
-            {/* Card 5 */}
-            <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-8 flex flex-col items-center min-h-[180px]">
-              <LayoutDashboard className="w-16 h-16 mb-4" style={{ color: '#11686b' }} />
-              <span className="text-2xl font-bold text-gray-900 text-center mb-2">Real Time Control Dashboard</span>
-              <span className="text-base text-gray-700 text-center">Centralized dashboard for live control and monitoring.</span>
-            </div>
-            {/* Card 6 */}
-            <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-8 flex flex-col items-center min-h-[180px]">
-              <BellDot className="w-16 h-16 mb-4" style={{ color: '#11686b' }} />
-              <span className="text-2xl font-bold text-gray-900 text-center mb-2">Alerts and AI Recommendations</span>
-              <span className="text-base text-gray-700 text-center">Get instant alerts and actionable AI recommendations.</span>
+          {/* Feature Cards Section */}
+          <div className='z-10 w-full max-w-6xl'>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full z-10">
+              {/* Card 1 */}
+              <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center">
+                <Map className="w-12 h-12 md:w-16 md:w-16 mb-4" style={{ color: '#11686b' }} />
+                <span className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Live Tracking</span>
+                <span className="text-base text-gray-700">Monitor train positions in real time across the network.</span>
+              </div>
+              {/* Card 2 */}
+              <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center">
+                <ShieldCheck className="w-12 h-12 md:w-16 md:w-16 mb-4" style={{ color: '#11686b' }} />
+                <span className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Reliable Service</span>
+                <span className="text-base text-gray-700">Ensuring consistent and dependable railway operations.</span>
+              </div>
+              {/* Card 3 */}
+              <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center">
+                <TimerReset className="w-12 h-12 md:w-16 md:w-16 mb-4" style={{ color: '#11686b' }} />
+                <span className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Minimum Delay</span>
+                <span className="text-base text-gray-700">Reduce delays with intelligent scheduling and control.</span>
+              </div>
+              {/* Card 4 */}
+              <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center">
+                <BrainCog className="w-12 h-12 md:w-16 md:w-16 mb-4" style={{ color: '#11686b' }} />
+                <span className="text-xl md:text-2xl font-bold text-gray-900 mb-2">AI Based Scheduling</span>
+                <span className="text-base text-gray-700">Leverage AI to optimize train schedules and routes.</span>
+              </div>
+              {/* Card 5 */}
+              <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center">
+                <LayoutDashboard className="w-12 h-12 md:w-16 md:w-16 mb-4" style={{ color: '#11686b' }} />
+                <span className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Real Time Control Dashboard</span>
+                <span className="text-base text-gray-700">Centralized dashboard for live control and monitoring.</span>
+              </div>
+              {/* Card 6 */}
+              <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center">
+                <BellDot className="w-12 h-12 md:w-16 md:w-16 mb-4" style={{ color: '#11686b' }} />
+                <span className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Alerts and AI Recommendations</span>
+                <span className="text-base text-gray-700">Get instant alerts and actionable AI recommendations.</span>
+              </div>
             </div>
           </div>
         </div>
-
-
       </div>
+
     );
   }
 
@@ -186,7 +189,7 @@ function App() {
                   />
                 </div>
                 <span className="text-xl font-bold text-gray-900">ORION</span>
-                <div className="text-xs text-gray-500 ml-2">
+                <div className="hidden md:block text-xs text-gray-500 ml-2">
                   Operational Rail Intelligence & Optimization Network
                 </div>
               </div>
