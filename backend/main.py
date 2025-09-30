@@ -1,5 +1,6 @@
 # main.py
 from fastapi import FastAPI
+from fastapi import APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from dotenv import load_dotenv
@@ -9,6 +10,7 @@ from optimizer import HybridOptimizationEngine
 load_dotenv()
 
 app = FastAPI()
+api = APIRouter(prefix="/api")
 
 # --- Middleware ---
 # This allows your frontend to talk to this API in deployed and local envs
@@ -39,3 +41,14 @@ def run_optimization(request: OptimizationRequest):
     engine = HybridOptimizationEngine(request)
     result = engine.generate_optimized_schedule()
     return result
+
+# --- Duplicate routes under /api for Platform routing ---
+@api.get("/")
+def read_root_api():
+    return read_root()
+
+@api.post("/optimize", response_model=OptimizationResponse)
+def run_optimization_api(request: OptimizationRequest):
+    return run_optimization(request)
+
+app.include_router(api)
