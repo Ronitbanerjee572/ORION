@@ -1,10 +1,10 @@
-const API_BASE = '/api';
+const API_BASE = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_BASE_URL) ? import.meta.env.VITE_API_BASE_URL : '/api';
 
 export const api = {
   // Get example schedule and KPIs
   async getExample() {
     try {
-      const response = await fetch(`${API_BASE}/example`);
+      const response = await fetch(`${API_BASE.replace(/\/$/, '')}/example`);
       if (!response.ok) throw new Error('Failed to fetch example data');
       return await response.json();
     } catch (error) {
@@ -17,7 +17,7 @@ export const api = {
   // Post optimization request
   async optimize(data) {
     try {
-      const response = await fetch(`${API_BASE}/optimize`, {
+      const response = await fetch(`${API_BASE.replace(/\/$/, '')}/optimize`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
