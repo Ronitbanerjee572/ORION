@@ -109,7 +109,7 @@ function App() {
         <div className="flex-grow flex flex-col items-center justify-center w-full px-4 md:px-8 pt-32 pb-12 md:pt-40 md:pb-20">
           {/* Hero Section */}
           <div className="glass-card flex flex-col items-center w-full z-10 relative p-6 md:p-12 mb-12 md:mb-16">
-            <p className="text-gray-900 text-4xl sm:text-5xl lg:text-7xl font-bold text-center">
+            <p className="text-gray-900 text-4xl sm:text-6xl lg:text-9xl font-bold text-center">
               AI-Driven Railway Traffic <span className='snp'>Optimization</span> for Maximizing Section Throughput
             </p>
           </div>
@@ -119,42 +119,45 @@ function App() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full z-10">
               {/* Card 1 */}
               <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center">
-                <Map className="w-12 h-12 md:w-16 md:w-16 mb-4" style={{ color: '#11686b' }} />
+                <Map className="w-12 h-12 md:w-16 mb-4" style={{ color: '#11686b' }} />
                 <span className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Live Tracking</span>
                 <span className="text-base text-gray-700">Monitor train positions in real time across the network.</span>
               </div>
               {/* Card 2 */}
               <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center">
-                <ShieldCheck className="w-12 h-12 md:w-16 md:w-16 mb-4" style={{ color: '#11686b' }} />
+                <ShieldCheck className="w-12 h-12 md:w-16 mb-4" style={{ color: '#11686b' }} />
                 <span className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Reliable Service</span>
                 <span className="text-base text-gray-700">Ensuring consistent and dependable railway operations.</span>
               </div>
               {/* Card 3 */}
               <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center">
-                <TimerReset className="w-12 h-12 md:w-16 md:w-16 mb-4" style={{ color: '#11686b' }} />
+                <TimerReset className="w-12 h-12 md:w-16 mb-4" style={{ color: '#11686b' }} />
                 <span className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Minimum Delay</span>
                 <span className="text-base text-gray-700">Reduce delays with intelligent scheduling and control.</span>
               </div>
               {/* Card 4 */}
               <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center">
-                <BrainCog className="w-12 h-12 md:w-16 md:w-16 mb-4" style={{ color: '#11686b' }} />
+                <BrainCog className="w-12 h-12 md:w-16 mb-4" style={{ color: '#11686b' }} />
                 <span className="text-xl md:text-2xl font-bold text-gray-900 mb-2">AI Based Scheduling</span>
                 <span className="text-base text-gray-700">Leverage AI to optimize train schedules and routes.</span>
               </div>
               {/* Card 5 */}
               <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center">
-                <LayoutDashboard className="w-12 h-12 md:w-16 md:w-16 mb-4" style={{ color: '#11686b' }} />
+                <LayoutDashboard className="w-12 h-12 md:w-16 mb-4" style={{ color: '#11686b' }} />
                 <span className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Real Time Control Dashboard</span>
                 <span className="text-base text-gray-700">Centralized dashboard for live control and monitoring.</span>
               </div>
               {/* Card 6 */}
               <div className="bg-white bg-opacity-80 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center">
-                <BellDot className="w-12 h-12 md:w-16 md:w-16 mb-4" style={{ color: '#11686b' }} />
+                <BellDot className="w-12 h-12 md:w-16 mb-4" style={{ color: '#11686b' }} />
                 <span className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Alerts and AI Recommendations</span>
                 <span className="text-base text-gray-700">Get instant alerts and actionable AI recommendations.</span>
               </div>
             </div>
           </div>
+        </div>
+        <div className='bg-[#11686b] text-white w-[100%] py-2 z-10'>
+          <p className='text-center'>© 2025-2026 ORION | All Right Reserved</p>
         </div>
       </div>
 
@@ -164,8 +167,12 @@ function App() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+        <div className="text-center flex flex-col justify-center items-center">
+          {/* <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div> */}
+          <div className="train-container">
+            <div className="track"></div>
+            <div className="train"></div>
+          </div>
           <p className="text-gray-600">Loading Railway Control System...</p>
         </div>
       </div>

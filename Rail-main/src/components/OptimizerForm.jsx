@@ -136,7 +136,7 @@ const OptimizerForm = ({ onOptimize }) => {
                       onChange={(e) => updateTrain(index, 'priority', e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
                     >
-                      <option value={10}>Highest Priority (10)</option>
+                      <option value={10}>Highest Priority</option>
                       <option value={8}>High (8)</option>
                       <option value={5}>Medium (5)</option>
                       <option value={2}>Low (2)</option>

@@ -94,7 +94,7 @@ const TrackDiagram = () => {
               display: 'inline-block',
             }}
           ></span>
-          <span className="text-sm text-gray-700">Train Description</span>
+          <span className="text-sm text-gray-700">Train ID</span>
         </div>
       </div>
       <button
