@@ -10,7 +10,7 @@ import Notifications from './components/Notifications';
 import ScheduleTimeline from './components/ScheduleTimeline';
 
 import DotGrid from './components/DotGrid';
-
+import AboutContact from './components/AboutContact';
 
 import { api } from './api';
 import orionLogo from './assets/orion.png';
@@ -20,12 +20,26 @@ function App() {
   const [scheduleResult, setScheduleResult] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showLanding, setShowLanding] = useState(true);
+  const [showAboutContact, setShowAboutContact] = useState(false);
+  const [aboutContactSection, setAboutContactSection] = useState('about');
+  const [pageLoading, setPageLoading] = useState(false);
 
   useEffect(() => {
-    if (!showLanding) {
+    if (!showLanding && !showAboutContact) {
       loadData();
     }
-  }, [showLanding]);
+  }, [showLanding, showAboutContact]);
+
+  // Handle page transitions with loading
+  const navigateToAboutContact = (section) => {
+    setPageLoading(true);
+    setTimeout(() => {
+      setAboutContactSection(section);
+      setShowAboutContact(true);
+      setShowLanding(false);
+      setPageLoading(false);
+    }, 800);
+  };
 
   const loadData = async () => {
     setLoading(true);
@@ -64,6 +78,32 @@ function App() {
       alerts: prevData.alerts.filter(alert => alert.id !== alertId)
     }));
   };
+
+  // Page Loading Screen
+  if (pageLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center flex flex-col justify-center items-center">
+          <div className="train-container">
+            <div className="track"></div>
+            <div className="train"></div>
+          </div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // About/Contact Page
+  if (showAboutContact) {
+    return (
+      <AboutContact 
+        section={aboutContactSection} 
+        setShowLanding={setShowLanding}
+        setShowAboutContact={setShowAboutContact}
+      />
+    );
+  }
 
   // Landing Page
   if (showLanding) {
@@ -109,7 +149,7 @@ function App() {
         <div className="flex-grow flex flex-col items-center justify-center w-full px-4 md:px-8 pt-32 pb-12 md:pt-40 md:pb-20">
           {/* Hero Section */}
           <div className="glass-card flex flex-col items-center w-full z-10 relative p-6 md:p-12 mb-12 md:mb-16">
-            <p className="text-gray-900 text-4xl sm:text-6xl lg:text-9xl font-bold text-center">
+            <p className="text-gray-900 text-4xl sm:text-6xl lg:text-8xl font-bold text-center">
               AI-Driven Railway Traffic <span className='snp'>Optimization</span> for Maximizing Section Throughput
             </p>
           </div>
@@ -156,8 +196,49 @@ function App() {
             </div>
           </div>
         </div>
+        <div className='bg-[#11686b] text-white w-full py-8 md:py-12 z-10'>
+          <div className='max-w-6xl mx-auto px-4 md:px-8 lg:px-16'>
+            <div className='flex flex-col md:flex-row md:justify-between md:items-start gap-8'>
+              {/* Brand Section */}
+              <div className='flex-1'>
+                <h1 className='text-2xl md:text-3xl font-bold mb-2'>ORION</h1>
+                <p className='text-sm md:text-base text-gray-200'>Speeding up Railway networks using AI</p>
+              </div>
+              
+              {/* Quick Links Section */}
+              <div className='flex-1'>
+                <h2 className='text-xl md:text-2xl font-semibold mb-4'>Quick Links</h2>
+                <div className='flex flex-col sm:flex-row gap-3 sm:gap-4'>
+                  <button
+                    className="px-4 py-2 md:px-6 md:py-3 z-20 bg-white text-[#11686b] rounded-md font-semibold shadow hover:bg-[#278083] hover:text-white transition-colors text-sm md:text-base whitespace-nowrap"
+                    onClick={() => setShowLanding(false)}
+                  >
+                    Get Started
+                  </button>
+                  <button 
+                    className='px-4 py-2 md:px-6 md:py-3 z-20 bg-[#11686b] border-2 border-white text-white rounded-md font-semibold shadow hover:bg-[#278083] transition-colors text-sm md:text-base whitespace-nowrap'
+                    onClick={() => navigateToAboutContact('about')}
+                  >
+                    About Us
+                  </button>
+                  <button 
+                    className='px-4 py-2 md:px-6 md:py-3 z-20 bg-[#11686b] border-2 border-white text-white rounded-md font-semibold shadow hover:bg-[#278083] transition-colors text-sm md:text-base whitespace-nowrap'
+                    onClick={() => navigateToAboutContact('contact')}
+                  >
+                    Contact Us
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            {/* Bottom Border - 90% width, centered */}
+            <div className='flex justify-center mt-8 md:mt-12'>
+              <div className='w-[90%] border-b-2 border-white opacity-50'></div>
+            </div>
+          </div>
+        </div>
         <div className='bg-[#11686b] text-white w-[100%] py-2 z-10'>
-          <p className='text-center'>© 2025-2026 ORION | All Right Reserved</p>
+          <p className='text-center'>© 2025 ORION | All Right Reserved</p>
         </div>
       </div>
 
@@ -187,7 +268,10 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center space-x-8">
-              <div className="flex items-center space-x-3">
+              <div 
+                className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
+                onClick={() => setShowLanding(true)}
+              >
                 <div className="">
                   <img
                     src={orionLogo}
